@@ -1,0 +1,1 @@
+create table orders(id bigserial, name text, price float, customer text);

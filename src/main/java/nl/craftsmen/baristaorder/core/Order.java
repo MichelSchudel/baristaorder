@@ -4,8 +4,11 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Builder
+@Builder(toBuilder=true)
 public class Order {
     Long id;
+
+    String customer;
     String name;
+    double price;
 }

@@ -1,16 +1,25 @@
 package nl.craftsmen.baristaorder.core;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class OrderService {
 
-    @Autowired
-    private OrdersRepository ordersRepository;
+    private final OrdersProvider ordersProvider;
 
-    public void saveNewOrder(Order order) {
-        ordersRepository.save(order);
+    private final PriceProvider priceProvider;
 
+    private final DiscountCalculator discountCalculator;
+
+    public Order saveNewOrder(Order order) {
+        double price = priceProvider.getPrice(order.getName());
+        double discountedPrice = discountCalculator.calculateNewPrice(order, price);
+        return ordersProvider.saveOrder(order.toBuilder().price(discountedPrice).build());
+    }
+
+    public Order getOrder(String name) {
+        return ordersProvider.findOrderByName(name);
     }
 }
