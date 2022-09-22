@@ -33,7 +33,7 @@ class OrderControllerIT {
     }
 
     @Test
-    void test() {
+    void test_get() {
         //set up mock order service
         when(orderService.getOrder(any())).thenReturn(Order.builder().id(1L).name("espresso").price(2.5).build());
 
@@ -49,4 +49,47 @@ class OrderControllerIT {
                 .body("name", equalTo("espresso"))
                 .body("price", equalTo(2.5F));
     }
+
+    @Test
+    void test_post() {
+        //set up mock order service
+        when(orderService.saveNewOrder(any())).thenReturn(
+                Order.builder()
+                        .id(1L)
+                        .name("espresso")
+                        .price(2.5)
+                        .customer("Michel")
+                        .build());
+
+        OrderRequestModel orderRequestModel = OrderRequestModel.builder()
+                .customer("Michel")
+                .name("espresso")
+                .build();
+        //do a call to the web layer
+        given()
+                .body(orderRequestModel)
+                .when()
+                .post("/orders")
+                .then()
+                .log().ifValidationFails()
+                .statusCode(HttpStatus.OK.value())
+                .contentType(JSON)
+                .body("name", equalTo("espresso"))
+                .body("price", equalTo(2.5F));
+    }
+
+    @Test
+    void test_post_400() {
+        //build an invalid model
+        OrderRequestModel orderRequestModel = OrderRequestModel.builder().build();
+        //do a call to the web layer
+        given()
+                .body(orderRequestModel)
+                .when()
+                .post("/orders")
+                .then()
+                .log().ifValidationFails()
+                .statusCode(HttpStatus.BAD_REQUEST.value());
+    }
+
 }
