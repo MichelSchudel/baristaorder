@@ -11,9 +11,8 @@ import org.springframework.test.context.ActiveProfiles;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ActiveProfiles("test")
-class OrdersCrudRepositoryIT {
+@ActiveProfiles("h2-test")
+class OrdersCrudRepositoryH2IT {
 
     @Autowired
     private OrdersRepository ordersCrudRepository;
@@ -31,9 +30,9 @@ class OrdersCrudRepositoryIT {
         Order storedOrder = ordersCrudRepository.findOrderByName("espresso");
 
         assertThat(storedOrder).isNotNull();
-        assertThat(storedOrder.getId()).isNotNull();
-        assertThat(storedOrder.getName()).isEqualTo("espresso");
-        assertThat(storedOrder.getPrice()).isEqualTo(2.5);
-        assertThat(storedOrder.getCustomer()).isEqualTo("Michel");
+        assertThat(storedOrder.id()).isNotNull();
+        assertThat(storedOrder.name()).isEqualTo("espresso");
+        assertThat(storedOrder.price()).isEqualTo(2.5);
+        assertThat(storedOrder.customer()).isEqualTo("Michel");
     }
 }

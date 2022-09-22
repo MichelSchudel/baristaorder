@@ -11,10 +11,10 @@ public class OrderService {
 
     private final PriceProvider priceProvider;
 
-    private final DiscountCalculator discountCalculator;
+    private final DiscountCalculator discountCalculator = new DiscountCalculator();
 
     public Order saveNewOrder(Order order) {
-        double price = priceProvider.getPrice(order.getName());
+        double price = priceProvider.getPrice(order.name());
         double discountedPrice = discountCalculator.calculateNewPrice(order, price);
         return ordersProvider.saveOrder(order.toBuilder().price(discountedPrice).build());
     }

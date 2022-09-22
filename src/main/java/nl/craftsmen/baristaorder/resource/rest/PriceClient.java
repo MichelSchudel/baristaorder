@@ -8,11 +8,11 @@ import org.springframework.web.client.RestTemplate;
 import static java.util.Objects.requireNonNull;
 
 @Service
-public class PriceClientImpl implements PriceProvider {
+public class PriceClient implements PriceProvider {
 
     private final RestTemplate restTemplate;
 
-    public PriceClientImpl(RestTemplateBuilder restTemplateBuilder) {
+    public PriceClient(RestTemplateBuilder restTemplateBuilder) {
         restTemplate = restTemplateBuilder.build();
     }
 

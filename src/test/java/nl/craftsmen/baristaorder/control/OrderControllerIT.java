@@ -28,12 +28,16 @@ class OrderControllerIT {
 
     @BeforeEach
     void setup() {
+        //alternatively, use MockMvc here
         RestAssuredMockMvc.webAppContextSetup(applicationContext);
     }
 
     @Test
     void test() {
+        //set up mock order service
         when(orderService.getOrder(any())).thenReturn(Order.builder().id(1L).name("espresso").price(2.5).build());
+
+        //do a call to the web layer
         given()
                 .param("name", "espresso")
                 .when()

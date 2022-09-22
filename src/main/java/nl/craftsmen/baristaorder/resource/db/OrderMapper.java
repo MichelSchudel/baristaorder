@@ -6,10 +6,10 @@ public class OrderMapper {
 
     public static OrderEntity toEntity(Order order) {
         OrderEntity orderEntity = new OrderEntity();
-        orderEntity.setName(order.getName());
-        orderEntity.setPrice(order.getPrice());
-        orderEntity.setId(order.getId());
-        orderEntity.setCustomer(order.getCustomer());
+        orderEntity.setName(order.name());
+        orderEntity.setPrice(order.price());
+        orderEntity.setId(order.id());
+        orderEntity.setCustomer(order.customer());
         return orderEntity;
     }
 
