@@ -19,7 +19,6 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 @RestClientTest(PriceRestClient.class)
-@ActiveProfiles("h2-test")
 @AutoConfigureWireMock(port = 0, stubs ="classpath:/stubs")
 @Import(PriceRestClientWiremockIT.WiremockConfiguration.class)
 class PriceRestClientWiremockIT {
