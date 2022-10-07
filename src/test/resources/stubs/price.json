@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/price"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "price": 20
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

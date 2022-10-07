@@ -13,7 +13,7 @@ public class PriceRestClient implements PriceProvider {
     private final RestTemplate restTemplate;
 
     public PriceRestClient(RestTemplateBuilder restTemplateBuilder) {
-        restTemplate = restTemplateBuilder.build();
+        this.restTemplate = restTemplateBuilder.build();
     }
 
     public double getPrice(String name) {
