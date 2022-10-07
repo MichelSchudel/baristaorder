@@ -21,7 +21,7 @@ class PriceRestClientIT {
 
     @Test
     void test() {
-        this.server.expect(requestTo("/price"))
+        this.server.expect(requestTo("/price/Design%20Patterns"))
                 .andRespond(withSuccess("{ \"price\": 20}", MediaType.APPLICATION_JSON));
 
         assertThat(priceRestClient.getPrice("Design Patterns")).isEqualTo(20);

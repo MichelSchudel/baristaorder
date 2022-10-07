@@ -49,8 +49,6 @@ class OrderServiceTest {
                 .name("Design Patterns")
                 .build();
 
-        orderService.saveNewOrder(order);
-
         verify(ordersProvider).saveOrder(orderArgumentCaptor.capture());
         assertThat(orderArgumentCaptor.getValue().price()).isEqualTo(1.0);
     }
