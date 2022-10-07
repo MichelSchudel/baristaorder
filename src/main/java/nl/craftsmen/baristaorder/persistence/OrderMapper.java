@@ -1,8 +1,8 @@
-package nl.craftsmen.baristaorder.resource.db;
+package nl.craftsmen.baristaorder.persistence;
 
 import nl.craftsmen.baristaorder.core.Order;
 
-public class OrderMapper {
+public final class OrderMapper {
 
     public static OrderEntity toEntity(Order order) {
         OrderEntity orderEntity = new OrderEntity();

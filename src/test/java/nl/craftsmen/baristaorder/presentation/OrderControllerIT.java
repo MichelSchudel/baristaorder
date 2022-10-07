@@ -1,4 +1,4 @@
-package nl.craftsmen.baristaorder.control;
+package nl.craftsmen.baristaorder.presentation;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import nl.craftsmen.baristaorder.core.Order;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 class OrderControllerIT {
 
     @MockBean
-    private OrderService orderService;
+    private OrderService mockOrderService;
 
     @Autowired
     private WebApplicationContext applicationContext;
@@ -35,35 +35,42 @@ class OrderControllerIT {
     @Test
     void test_get() {
         //set up mock order service
-        when(orderService.getOrder(any())).thenReturn(Order.builder().id(1L).name("espresso").price(2.5).build());
+        when(mockOrderService.getOrder(any()))
+                .thenReturn(
+                        Order.builder()
+                                .id(1L)
+                                .name("Design Patterns")
+                                .price(20)
+                                .customer("Michel")
+                                .build());
 
         //do a call to the web layer
         given()
-                .param("name", "espresso")
+                .param("name", "Design Patterns")
                 .when()
                 .get("/orders")
                 .then()
                 .log().ifValidationFails()
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
-                .body("name", equalTo("espresso"))
-                .body("price", equalTo(2.5F));
+                .body("name", equalTo("Design Patterns"))
+                .body("price", equalTo(20F));
     }
 
     @Test
     void test_post() {
         //set up mock order service
-        when(orderService.saveNewOrder(any())).thenReturn(
+        when(mockOrderService.saveNewOrder(any())).thenReturn(
                 Order.builder()
                         .id(1L)
-                        .name("espresso")
-                        .price(2.5)
+                        .name("Design Patterns")
+                        .price(20)
                         .customer("Michel")
                         .build());
 
-        OrderRequestModel orderRequestModel = OrderRequestModel.builder()
+        var orderRequestModel = OrderRequestModel.builder()
                 .customer("Michel")
-                .name("espresso")
+                .name("Design Patterns")
                 .build();
         //do a call to the web layer
         given()
@@ -74,14 +81,15 @@ class OrderControllerIT {
                 .log().ifValidationFails()
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
-                .body("name", equalTo("espresso"))
-                .body("price", equalTo(2.5F));
+                .body("name", equalTo("Design Patterns"))
+                .body("price", equalTo(20F));
     }
 
     @Test
     void test_post_400() {
         //build an invalid model
-        OrderRequestModel orderRequestModel = OrderRequestModel.builder().build();
+        var orderRequestModel = OrderRequestModel.builder()
+                .build();
         //do a call to the web layer
         given()
                 .body(orderRequestModel)

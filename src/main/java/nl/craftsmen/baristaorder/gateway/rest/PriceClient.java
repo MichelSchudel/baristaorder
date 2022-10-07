@@ -1,4 +1,4 @@
-package nl.craftsmen.baristaorder.resource.rest;
+package nl.craftsmen.baristaorder.gateway.rest;
 
 import nl.craftsmen.baristaorder.core.PriceProvider;
 import org.springframework.boot.web.client.RestTemplateBuilder;

@@ -1,9 +1,7 @@
-package nl.craftsmen.baristaorder.resource.kafka;
+package nl.craftsmen.baristaorder.gateway.messaging;
 
 import nl.craftsmen.baristaorder.BaristaOrderApplication;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.junit.ClassRule;
 import org.junit.jupiter.api.Test;

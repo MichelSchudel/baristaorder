@@ -1,5 +1,7 @@
-package nl.craftsmen.baristaorder.resource.kafka;
+package nl.craftsmen.baristaorder.gateway.messaging;
 
+import nl.craftsmen.baristaorder.gateway.messaging.KafkaClient;
+import nl.craftsmen.baristaorder.gateway.messaging.KafkaTopicListener;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

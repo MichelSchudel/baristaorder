@@ -1,4 +1,4 @@
-package nl.craftsmen.baristaorder.control;
+package nl.craftsmen.baristaorder.presentation;
 
 import nl.craftsmen.baristaorder.core.Order;
 
@@ -6,8 +6,8 @@ class OrderModelMapper {
 
     Order toOrder(OrderRequestModel orderRequestModel) {
         return Order.builder()
-                        .name(orderRequestModel.name())
-                                .customer(orderRequestModel.customer()).
+                .name(orderRequestModel.name())
+                .customer(orderRequestModel.customer()).
                 build();
     }
 

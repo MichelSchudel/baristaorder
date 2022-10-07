@@ -1,4 +1,4 @@
-package nl.craftsmen.baristaorder.resource.rest;
+package nl.craftsmen.baristaorder.gateway.rest;
 
 import lombok.Getter;
 import lombok.Setter;

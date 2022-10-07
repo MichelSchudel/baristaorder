@@ -1,4 +1,4 @@
-package nl.craftsmen.baristaorder.resource.kafka;
+package nl.craftsmen.baristaorder.gateway.messaging;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;

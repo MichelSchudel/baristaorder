@@ -1,5 +1,6 @@
-package nl.craftsmen.baristaorder.resource.rest;
+package nl.craftsmen.baristaorder.gateway.rest;
 
+import nl.craftsmen.baristaorder.gateway.rest.PriceClient;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
@@ -22,9 +23,9 @@ class PriceClientIT {
     @Test
     void test() {
         this.server.expect(requestTo("/price"))
-                .andRespond(withSuccess("{ \"price\": 2.50}", MediaType.APPLICATION_JSON));
+                .andRespond(withSuccess("{ \"price\": 20}", MediaType.APPLICATION_JSON));
 
-        assertThat(priceClient.getPrice("espresso")).isEqualTo(2.50);
+        assertThat(priceClient.getPrice("Design Patterns")).isEqualTo(20);
     }
 
 }

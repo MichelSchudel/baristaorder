@@ -1,10 +1,9 @@
-package nl.craftsmen.baristaorder.resource.db;
+package nl.craftsmen.baristaorder.persistence;
 
 
 import nl.craftsmen.baristaorder.core.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -12,27 +11,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @ActiveProfiles("h2-test")
-class OrdersCrudRepositoryH2IT {
+class OrdersRepositoryEmbeddedDbIT {
 
     @Autowired
     private OrdersRepository ordersCrudRepository;
 
     @Test
     void insert_order() {
-        Order order = Order
+        var order = Order
                 .builder()
-                .name("espresso")
-                .price(2.5)
+                .name("Design Patterns")
+                .price(20)
                 .customer("Michel")
                 .build();
 
         ordersCrudRepository.saveOrder(order);
-        Order storedOrder = ordersCrudRepository.findOrderByName("espresso");
+        var persistedOrder = ordersCrudRepository.findOrderByName("Design Patterns");
 
-        assertThat(storedOrder).isNotNull();
-        assertThat(storedOrder.id()).isNotNull();
-        assertThat(storedOrder.name()).isEqualTo("espresso");
-        assertThat(storedOrder.price()).isEqualTo(2.5);
-        assertThat(storedOrder.customer()).isEqualTo("Michel");
+        assertThat(persistedOrder).isNotNull();
+        assertThat(persistedOrder.id()).isNotNull();
+        assertThat(persistedOrder.name()).isEqualTo("Design Patterns");
+        assertThat(persistedOrder.price()).isEqualTo(20);
+        assertThat(persistedOrder.customer()).isEqualTo("Michel");
     }
 }

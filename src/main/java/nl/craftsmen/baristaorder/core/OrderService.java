@@ -1,22 +1,25 @@
 package nl.craftsmen.baristaorder.core;
 
 import lombok.RequiredArgsConstructor;
+import lombok.val;
+import nl.craftsmen.baristaorder.presentation.OrderController;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class OrderService {
 
-    private final OrdersProvider ordersProvider;
-
     private final PriceProvider priceProvider;
+
+    private final OrdersProvider ordersProvider;
 
     private final DiscountCalculator discountCalculator = new DiscountCalculator();
 
     public Order saveNewOrder(Order order) {
         double price = priceProvider.getPrice(order.name());
         double discountedPrice = discountCalculator.calculateNewPrice(order, price);
-        return ordersProvider.saveOrder(order.toBuilder().price(discountedPrice).build());
+        val orderWithPrice = order.toBuilder().price(discountedPrice).build();
+        return ordersProvider.saveOrder(orderWithPrice);
     }
 
     public Order getOrder(String name) {

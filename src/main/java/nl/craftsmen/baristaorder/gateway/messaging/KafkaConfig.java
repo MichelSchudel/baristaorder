@@ -1,4 +1,4 @@
-package nl.craftsmen.baristaorder.resource.kafka;
+package nl.craftsmen.baristaorder.gateway.messaging;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;

@@ -1,4 +1,4 @@
-package nl.craftsmen.baristaorder.resource.db;
+package nl.craftsmen.baristaorder.persistence;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -34,7 +34,7 @@ class OrderServiceTest {
         when(priceProvider.getPrice(any())).thenReturn(2.0);
         Order order = Order.builder()
                 .customer("Pieter")
-                .name("espresso")
+                .name("Design Patterns")
                 .build();
 
         orderService.saveNewOrder(order);
@@ -47,7 +47,7 @@ class OrderServiceTest {
         when(priceProvider.getPrice(any())).thenReturn(2.0);
         Order order = Order.builder()
                 .customer("Michel")
-                .name("espresso")
+                .name("Design Patterns")
                 .build();
 
         orderService.saveNewOrder(order);

@@ -1,4 +1,4 @@
-package nl.craftsmen.baristaorder.resource.kafka;
+package nl.craftsmen.baristaorder.gateway.messaging;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaClient {
 
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
     KafkaClient(KafkaTemplate<String, String> kafkaTemplate) {
