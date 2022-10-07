@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.CountDownLatch;
 
 @Component
-public class KafkaTopicListener {
+public class KafkaSimpleConsumer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaTopicListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaSimpleConsumer.class);
 
     private CountDownLatch latch = new CountDownLatch(1);
     private String payload;

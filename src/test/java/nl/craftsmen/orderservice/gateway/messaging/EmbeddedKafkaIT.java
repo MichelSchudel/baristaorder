@@ -21,10 +21,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class EmbeddedKafkaIT {
 
     @Autowired
-    private KafkaTopicListener consumer;
+    private KafkaSimpleConsumer consumer;
 
     @Autowired
-    private KafkaClient producer;
+    private KafkaSimpleProducer producer;
 
     @Value("${test.topic}")
     private String topic;

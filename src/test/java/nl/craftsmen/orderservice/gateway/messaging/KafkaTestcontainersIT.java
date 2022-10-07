@@ -36,10 +36,10 @@ class KafkaTestcontainersIT {
             new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:5.4.3"));
 
     @Autowired
-    private KafkaTopicListener consumer;
+    private KafkaSimpleConsumer consumer;
 
     @Autowired
-    private KafkaClient producer;
+    private KafkaSimpleProducer producer;
 
     @Value("${test.topic}")
     private String topic;

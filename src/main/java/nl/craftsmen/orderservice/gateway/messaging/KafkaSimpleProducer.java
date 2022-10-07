@@ -5,12 +5,12 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class KafkaClient {
+public class KafkaSimpleProducer {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
-    KafkaClient(KafkaTemplate<String, String> kafkaTemplate) {
+    KafkaSimpleProducer(KafkaTemplate<String, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
