@@ -41,7 +41,7 @@ class OrderControllerIT {
                 Order.builder()
                         .id(1L)
                         .name("Design Patterns")
-                        .price(20F)
+                        .price(2000)
                         .customer("Michel")
                         .build());
 
@@ -61,7 +61,7 @@ class OrderControllerIT {
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
                 .body("name", equalTo("Design Patterns"))
-                .body("price", equalTo(20F));
+                .body("price", equalTo(2000));
     }
 
     @Test
@@ -90,7 +90,7 @@ class OrderControllerIT {
                         Order.builder()
                                 .id(1L)
                                 .name("Design Patterns")
-                                .price(20)
+                                .price(2000)
                                 .customer("Michel")
                                 .build());
 
@@ -104,7 +104,7 @@ class OrderControllerIT {
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
                 .body("name", equalTo("Design Patterns"))
-                .body("price", equalTo(20F));
+                .body("price", equalTo(2000));
     }
 
 }

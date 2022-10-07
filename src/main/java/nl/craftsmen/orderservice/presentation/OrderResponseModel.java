@@ -6,6 +6,6 @@ import lombok.Builder;
 public record OrderResponseModel(Long id,
                                  String customer,
                                  String name,
-                                 double price
+                                 long price
 ) {
 }

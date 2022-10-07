@@ -12,11 +12,11 @@ public class OrderService {
 
     private final OrdersProvider ordersProvider;
 
-    private final DiscountCalculator discountCalculator = new DiscountCalculator();
+    private final PriceConverter priceConverter = new PriceConverter();
 
     public Order saveNewOrder(Order order) {
         double price = priceProvider.getPrice(order.name());
-        double discountedPrice = discountCalculator.calculateNewPrice(order, price);
+        long discountedPrice = priceConverter.convertToCents(price);
         val orderWithPrice = order.toBuilder().price(discountedPrice).build();
         return ordersProvider.saveOrder(orderWithPrice);
     }

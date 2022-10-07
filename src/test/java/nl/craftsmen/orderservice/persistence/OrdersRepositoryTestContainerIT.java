@@ -24,7 +24,7 @@ class OrdersRepositoryTestContainerIT {
         Order order = Order
                 .builder()
                 .name("Design Patterns")
-                .price(20)
+                .price(2000)
                 .customer("Michel")
                 .build();
 
@@ -34,7 +34,7 @@ class OrdersRepositoryTestContainerIT {
         assertThat(storedOrder).isNotNull();
         assertThat(storedOrder.id()).isNotNull();
         assertThat(storedOrder.name()).isEqualTo("Design Patterns");
-        assertThat(storedOrder.price()).isEqualTo(20);
+        assertThat(storedOrder.price()).isEqualTo(2000);
         assertThat(storedOrder.customer()).isEqualTo("Michel");
     }
 }

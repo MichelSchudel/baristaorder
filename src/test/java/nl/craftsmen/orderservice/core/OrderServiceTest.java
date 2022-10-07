@@ -42,15 +42,17 @@ class OrderServiceTest {
     }
 
     @Test
-    void order_service_should_apply_discount_for_special_customer() {
-        when(priceProvider.getPrice(any())).thenReturn(2.0);
+    void order_service_should_convert_price_to_cents() {
+        when(priceProvider.getPrice(any())).thenReturn(20.0);
         Order order = Order.builder()
                 .customer("Michel")
                 .name("Design Patterns")
                 .build();
 
+        orderService.saveNewOrder(order);
+
         verify(ordersProvider).saveOrder(orderArgumentCaptor.capture());
-        assertThat(orderArgumentCaptor.getValue().price()).isEqualTo(1.0);
+        assertThat(orderArgumentCaptor.getValue().price()).isEqualTo(2000);
     }
 
 }
