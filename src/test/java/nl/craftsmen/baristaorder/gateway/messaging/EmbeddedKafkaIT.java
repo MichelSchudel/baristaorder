@@ -1,7 +1,5 @@
 package nl.craftsmen.baristaorder.gateway.messaging;
 
-import nl.craftsmen.baristaorder.gateway.messaging.KafkaClient;
-import nl.craftsmen.baristaorder.gateway.messaging.KafkaTopicListener;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +30,7 @@ class EmbeddedKafkaIT {
     private String topic;
 
     @Test
-    public void givenEmbeddedKafkaBroker_whenSendingWithSimpleProducer_thenMessageReceived()
+    void givenEmbeddedKafkaBroker_whenSendingWithSimpleProducer_thenMessageReceived()
             throws Exception {
         String data = "Sending with our own simple KafkaProducer to topic " + topic;
 

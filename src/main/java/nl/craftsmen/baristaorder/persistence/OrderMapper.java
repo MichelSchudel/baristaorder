@@ -1,7 +1,11 @@
 package nl.craftsmen.baristaorder.persistence;
 
+import lombok.NoArgsConstructor;
 import nl.craftsmen.baristaorder.core.Order;
 
+import static lombok.AccessLevel.PRIVATE;
+
+@NoArgsConstructor(access = PRIVATE)
 public final class OrderMapper {
 
     public static OrderEntity toEntity(Order order) {

@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Import(KafkaTestcontainersIT.KafkaTestContainersConfiguration.class)
 @SpringBootTest(classes = BaristaOrderApplication.class)
 @DirtiesContext
-public class KafkaTestcontainersIT {
+class KafkaTestcontainersIT {
 
     @ClassRule
     public static KafkaContainer kafka =
@@ -57,7 +57,7 @@ public class KafkaTestcontainersIT {
         assertThat(consumer.getPayload()).containsSequence(data);
     }
 
-    class KafkaTestContainersConfiguration {
+    static class KafkaTestContainersConfiguration {
         @Bean
         public Map<String, Object> consumerConfigs() {
             Map<String, Object> props = new HashMap<>();
