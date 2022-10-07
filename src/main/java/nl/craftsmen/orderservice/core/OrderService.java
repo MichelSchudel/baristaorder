@@ -21,7 +21,7 @@ public class OrderService {
         return ordersProvider.saveOrder(orderWithPrice);
     }
 
-    public Order getOrder(String name) {
-        return ordersProvider.findOrderByName(name);
+    public Order getOrder(Long id) {
+        return ordersProvider.findOrderById(id);
     }
 }

@@ -16,15 +16,15 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public OrderResponseModel saveOrder(@Valid OrderRequestModel orderRequestModel) {
+    public OrderResponseModel saveOrder(@Valid @RequestBody OrderRequestModel orderRequestModel) {
         var order = orderModelMapper.toOrder(orderRequestModel);
         var persistedOrder = orderService.saveNewOrder(order);
         return orderModelMapper.toOrderResponseModel(persistedOrder);
     }
 
     @GetMapping
-    public OrderResponseModel getOrder(@RequestParam("name") String name) {
-        var order = orderService.getOrder(name);
+    public OrderResponseModel getOrder(@RequestParam("id") Long id) {
+        var order = orderService.getOrder(id);
         return orderModelMapper.toOrderResponseModel(order);
     }
 }

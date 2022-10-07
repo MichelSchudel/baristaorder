@@ -25,8 +25,8 @@ class OrdersRepositoryEmbeddedDbIT {
                 .customer("Michel")
                 .build();
 
-        ordersCrudRepository.saveOrder(order);
-        var persistedOrder = ordersCrudRepository.findOrderByName("Design Patterns");
+        var persistedOrder = ordersCrudRepository.saveOrder(order);
+        Order storedOrder = ordersCrudRepository.findOrderById(persistedOrder.id());
 
         assertThat(persistedOrder).isNotNull();
         assertThat(persistedOrder.id()).isNotNull();

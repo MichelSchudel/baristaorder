@@ -28,8 +28,8 @@ class OrdersRepositoryTestContainerIT {
                 .customer("Michel")
                 .build();
 
-        ordersCrudRepository.saveOrder(order);
-        Order storedOrder = ordersCrudRepository.findOrderByName("Design Patterns");
+        var persistedOrder = ordersCrudRepository.saveOrder(order);
+        Order storedOrder = ordersCrudRepository.findOrderById(persistedOrder.id());
 
         assertThat(storedOrder).isNotNull();
         assertThat(storedOrder.id()).isNotNull();

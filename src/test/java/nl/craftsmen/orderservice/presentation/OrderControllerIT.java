@@ -1,6 +1,7 @@
 package nl.craftsmen.orderservice.presentation;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
+import nl.craftsmen.orderservice.core.NotFoundException;
 import nl.craftsmen.orderservice.core.Order;
 import nl.craftsmen.orderservice.core.OrderService;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -33,7 +35,55 @@ class OrderControllerIT {
     }
 
     @Test
-    void test_get() {
+    void posting_order_should_result_in_order_response() {
+        //set up mock order service
+        when(mockOrderService.saveNewOrder(any())).thenReturn(
+                Order.builder()
+                        .id(1L)
+                        .name("Design Patterns")
+                        .price(20F)
+                        .customer("Michel")
+                        .build());
+
+        var orderRequestModel = OrderRequestModel.builder()
+                .customer("Michel")
+                .name("Design Patterns")
+                .build();
+
+        //do a call to the web layer
+        given()
+                .body(orderRequestModel)
+                .contentType(JSON)
+                .when()
+                .post("/orders")
+                .then()
+                .log().ifValidationFails()
+                .statusCode(HttpStatus.OK.value())
+                .contentType(JSON)
+                .body("name", equalTo("Design Patterns"))
+                .body("price", equalTo(20F));
+    }
+
+    @Test
+    void bad_order_model_should_result_in_bad_request() {
+        //build an invalid model
+        var orderRequestModel = OrderRequestModel.builder()
+                .build();
+        //do a call to the web layer
+        given()
+                .body(orderRequestModel)
+                .contentType(JSON)
+                .when()
+                .post("/orders")
+                .then()
+                .log().ifValidationFails()
+                .statusCode(HttpStatus.BAD_REQUEST.value());
+    }
+
+
+
+    @Test
+    void get_existing_order() {
         //set up mock order service
         when(mockOrderService.getOrder(any()))
                 .thenReturn(
@@ -46,7 +96,7 @@ class OrderControllerIT {
 
         //do a call to the web layer
         given()
-                .param("name", "Design Patterns")
+                .param("id", 1L)
                 .when()
                 .get("/orders")
                 .then()
@@ -55,49 +105,6 @@ class OrderControllerIT {
                 .contentType(JSON)
                 .body("name", equalTo("Design Patterns"))
                 .body("price", equalTo(20F));
-    }
-
-    @Test
-    void test_post() {
-        //set up mock order service
-        when(mockOrderService.saveNewOrder(any())).thenReturn(
-                Order.builder()
-                        .id(1L)
-                        .name("Design Patterns")
-                        .price(20)
-                        .customer("Michel")
-                        .build());
-
-        var orderRequestModel = OrderRequestModel.builder()
-                .customer("Michel")
-                .name("Design Patterns")
-                .build();
-        //do a call to the web layer
-        given()
-                .body(orderRequestModel)
-                .when()
-                .post("/orders")
-                .then()
-                .log().ifValidationFails()
-                .statusCode(HttpStatus.OK.value())
-                .contentType(JSON)
-                .body("name", equalTo("Design Patterns"))
-                .body("price", equalTo(20F));
-    }
-
-    @Test
-    void test_post_400() {
-        //build an invalid model
-        var orderRequestModel = OrderRequestModel.builder()
-                .build();
-        //do a call to the web layer
-        given()
-                .body(orderRequestModel)
-                .when()
-                .post("/orders")
-                .then()
-                .log().ifValidationFails()
-                .statusCode(HttpStatus.BAD_REQUEST.value());
     }
 
 }

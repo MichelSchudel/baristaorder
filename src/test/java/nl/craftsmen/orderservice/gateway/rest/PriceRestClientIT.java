@@ -10,21 +10,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
-@RestClientTest(PriceClient.class)
-class PriceClientIT {
+@RestClientTest(PriceRestClient.class)
+class PriceRestClientIT {
 
     @Autowired
     private MockRestServiceServer server;
 
     @Autowired
-    private PriceClient priceClient;
+    private PriceRestClient priceRestClient;
 
     @Test
     void test() {
         this.server.expect(requestTo("/price"))
                 .andRespond(withSuccess("{ \"price\": 20}", MediaType.APPLICATION_JSON));
 
-        assertThat(priceClient.getPrice("Design Patterns")).isEqualTo(20);
+        assertThat(priceRestClient.getPrice("Design Patterns")).isEqualTo(20);
     }
 
 }

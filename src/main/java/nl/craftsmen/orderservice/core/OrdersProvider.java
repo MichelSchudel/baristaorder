@@ -4,5 +4,5 @@ public interface OrdersProvider {
 
     Order saveOrder(Order order);
 
-    Order findOrderByName(String name);
+    Order findOrderById(Long id);
 }
