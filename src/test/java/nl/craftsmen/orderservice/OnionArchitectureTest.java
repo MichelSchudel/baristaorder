@@ -11,7 +11,7 @@ class OnionArchitectureTest {
     @Test
     void test_onion_architecture() {
         JavaClasses classes = new ClassFileImporter()
-                .importPackages(OrderApplication.class.getPackageName()
+                .importPackages(BaristaOrderApplication.class.getPackageName()
                 );
         onionArchitecture()
                 .domainModels("..core..")

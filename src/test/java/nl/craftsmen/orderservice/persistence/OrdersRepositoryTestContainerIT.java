@@ -11,7 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-//You need this because otherwise the postgres DB gets replaced by a H2 database
+//You need this because otherwise the postgres DB gets replaced by an H2 database
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("postgres-container-test")
 class OrdersRepositoryTestContainerIT {

@@ -1,13 +1,14 @@
 package nl.craftsmen.orderservice;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import static org.springframework.boot.SpringApplication.run;
+
 @SpringBootApplication
-public class OrderApplication {
+public class BaristaOrderApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OrderApplication.class, args);
+		run(BaristaOrderApplication.class, args);
 	}
 
 }

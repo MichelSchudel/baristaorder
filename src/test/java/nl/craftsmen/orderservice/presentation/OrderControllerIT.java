@@ -1,7 +1,6 @@
 package nl.craftsmen.orderservice.presentation;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
-import nl.craftsmen.orderservice.core.NotFoundException;
 import nl.craftsmen.orderservice.core.Order;
 import nl.craftsmen.orderservice.core.OrderService;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.context.WebApplicationContext;
 

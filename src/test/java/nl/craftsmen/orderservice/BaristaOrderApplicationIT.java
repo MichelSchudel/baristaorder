@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @ActiveProfiles("h2-test")
-class OrderApplicationIT {
+class BaristaOrderApplicationIT {
 
 	@Autowired
 	private ApplicationContext ctx;

@@ -1,6 +1,6 @@
 package nl.craftsmen.orderservice.gateway.messaging;
 
-import nl.craftsmen.orderservice.OrderApplication;
+import nl.craftsmen.orderservice.BaristaOrderApplication;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.junit.ClassRule;
@@ -27,12 +27,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RunWith(SpringRunner.class)
 @Import(KafkaTestcontainersIT.KafkaTestContainersConfiguration.class)
-@SpringBootTest(classes = OrderApplication.class)
+@SpringBootTest(classes = BaristaOrderApplication.class)
 @DirtiesContext
 class KafkaTestcontainersIT {
 
     @ClassRule
-    public static KafkaContainer kafka =
+    public static final KafkaContainer kafka =
             new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:5.4.3"));
 
     @Autowired
