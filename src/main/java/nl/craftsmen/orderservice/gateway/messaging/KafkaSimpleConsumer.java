@@ -16,7 +16,8 @@ public class KafkaSimpleConsumer {
     private CountDownLatch latch = new CountDownLatch(1);
     private String payload;
 
-    @KafkaListener(topics = "${test.topic}")
+    //disabled for demo purposes
+    //@KafkaListener(topics = "${test.topic}")
     public void receive(ConsumerRecord<?, ?> consumerRecord) {
         LOGGER.info("received payload='{}'", consumerRecord);
         payload = consumerRecord.toString();

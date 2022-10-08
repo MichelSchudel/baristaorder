@@ -17,6 +17,11 @@ public class PriceRestClient implements PriceProvider {
     }
 
     public double getPrice(String name) {
-        return requireNonNull(restTemplate.getForObject("/price/{name}", PriceResponseModel.class, name)).getPrice();
+        return requireNonNull(
+                restTemplate.getForObject("/price/{name}",
+                        PriceResponseModel.class,
+                        name)
+                )
+                .getPrice();
     }
 }

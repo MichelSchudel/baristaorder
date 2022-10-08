@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.context.WebApplicationContext;
@@ -96,9 +97,8 @@ class OrderControllerIT {
 
         //do a call to the web layer
         given()
-                .param("id", 1L)
                 .when()
-                .get("/orders")
+                .get("/orders/1")
                 .then()
                 .log().ifValidationFails()
                 .statusCode(HttpStatus.OK.value())
