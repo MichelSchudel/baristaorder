@@ -29,7 +29,10 @@ public class OrderController {
 
     @GetMapping("/{id}")
     public OrderResponseModel getOrder(@PathVariable("id") Long id) {
+        //get the order
         var order = orderService.getOrder(id);
+
+        //convert to response model
         return orderModelMapper.toOrderResponseModel(order);
     }
 }

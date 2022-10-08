@@ -1,7 +1,6 @@
 package nl.craftsmen.orderservice.core;
 
 import lombok.RequiredArgsConstructor;
-import lombok.val;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,9 +20,12 @@ public class OrderService {
 
         //get the price from headquarters
         double price = priceProvider.getPrice(order.name());
+
+        //convert it to cents
         long convertedPrice = priceConverter.convertToCents(price);
 
-        val orderWithPrice = order
+
+        var orderWithPrice = order
                 .toBuilder()
                 .price(convertedPrice)
                 .build();
