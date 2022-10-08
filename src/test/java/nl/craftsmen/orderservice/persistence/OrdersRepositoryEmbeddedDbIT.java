@@ -20,8 +20,8 @@ class OrdersRepositoryEmbeddedDbIT {
     void insert_order() {
         var order = Order
                 .builder()
-                .name("Design Patterns")
-                .price(2000)
+                .name("espresso")
+                .price(200L)
                 .customer("Michel")
                 .build();
 
@@ -30,8 +30,8 @@ class OrdersRepositoryEmbeddedDbIT {
 
         assertThat(persistedOrder).isNotNull();
         assertThat(persistedOrder.id()).isNotNull();
-        assertThat(persistedOrder.name()).isEqualTo("Design Patterns");
-        assertThat(persistedOrder.price()).isEqualTo(2000);
+        assertThat(persistedOrder.name()).isEqualTo("espresso");
+        assertThat(persistedOrder.price()).isEqualTo(200);
         assertThat(persistedOrder.customer()).isEqualTo("Michel");
     }
 }

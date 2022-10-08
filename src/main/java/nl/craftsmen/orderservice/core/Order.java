@@ -7,6 +7,6 @@ public record Order(
         Long id,
         String customer,
         String name,
-        long price
+        Long price
 ) {
 }

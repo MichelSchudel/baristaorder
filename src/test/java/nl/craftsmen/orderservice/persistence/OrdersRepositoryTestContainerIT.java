@@ -23,8 +23,8 @@ class OrdersRepositoryTestContainerIT {
     void insert_order() {
         Order order = Order
                 .builder()
-                .name("Design Patterns")
-                .price(2000)
+                .name("espresso")
+                .price(200L)
                 .customer("Michel")
                 .build();
 
@@ -33,8 +33,8 @@ class OrdersRepositoryTestContainerIT {
 
         assertThat(storedOrder).isNotNull();
         assertThat(storedOrder.id()).isNotNull();
-        assertThat(storedOrder.name()).isEqualTo("Design Patterns");
-        assertThat(storedOrder.price()).isEqualTo(2000);
+        assertThat(storedOrder.name()).isEqualTo("espresso");
+        assertThat(storedOrder.price()).isEqualTo(200);
         assertThat(storedOrder.customer()).isEqualTo("Michel");
     }
 }

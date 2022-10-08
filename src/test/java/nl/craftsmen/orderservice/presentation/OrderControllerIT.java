@@ -37,18 +37,20 @@ class OrderControllerIT {
 
     @Test
     void posting_order_should_result_in_order_response() {
+        
         //set up mock order service
         when(mockOrderService.saveNewOrder(any())).thenReturn(
                 Order.builder()
                         .id(1L)
-                        .name("Design Patterns")
-                        .price(2000)
+                        .name("espresso")
+                        .price(200L)
                         .customer("Michel")
                         .build());
 
+        //set up web request
         var orderRequestModel = OrderRequestModel.builder()
                 .customer("Michel")
-                .name("Design Patterns")
+                .name("espresso")
                 .build();
 
         //do a call to the web layer
@@ -61,8 +63,8 @@ class OrderControllerIT {
                 .log().ifValidationFails()
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
-                .body("name", equalTo("Design Patterns"))
-                .body("price", equalTo(2000));
+                .body("name", equalTo("espresso"))
+                .body("price", equalTo(200));
     }
 
     @Test
@@ -90,8 +92,8 @@ class OrderControllerIT {
                 .thenReturn(
                         Order.builder()
                                 .id(1L)
-                                .name("Design Patterns")
-                                .price(2000)
+                                .name("espresso")
+                                .price(2000L)
                                 .customer("Michel")
                                 .build());
 
@@ -103,7 +105,7 @@ class OrderControllerIT {
                 .log().ifValidationFails()
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
-                .body("name", equalTo("Design Patterns"))
+                .body("name", equalTo("espresso"))
                 .body("price", equalTo(2000));
     }
 

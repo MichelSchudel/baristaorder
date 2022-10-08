@@ -21,10 +21,10 @@ class PriceRestClientIT {
 
     @Test
     void test() {
-        this.server.expect(requestTo("/price/Design%20Patterns"))
+        this.server.expect(requestTo("/price/espresso"))
                 .andRespond(withSuccess("{ \"price\": 20}", MediaType.APPLICATION_JSON));
 
-        assertThat(priceRestClient.getPrice("Design Patterns")).isEqualTo(20);
+        assertThat(priceRestClient.getPrice("espresso")).isEqualTo(20);
     }
 
 }

@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "GET",
-    "url": "/price/Design%20Patterns"
+    "url": "/price/espresso"
   },
   "response": {
     "status": 200,

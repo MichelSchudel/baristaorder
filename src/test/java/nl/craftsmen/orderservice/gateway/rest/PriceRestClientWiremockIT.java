@@ -28,7 +28,7 @@ class PriceRestClientWiremockIT {
 
     @Test
     void test() {
-        assertThat(priceRestClient.getPrice("Design Patterns")).isEqualTo(20);
+        assertThat(priceRestClient.getPrice("espresso")).isEqualTo(20);
     }
 
     @TestConfiguration

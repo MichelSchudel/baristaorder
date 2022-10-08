@@ -14,7 +14,7 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private long price;
+    private Long price;
     private String customer;
 
 }

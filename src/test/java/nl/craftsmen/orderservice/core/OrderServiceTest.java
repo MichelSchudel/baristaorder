@@ -32,27 +32,33 @@ class OrderServiceTest {
     void order_service_should_store_order() {
         when(priceProvider.getPrice(any())).thenReturn(2.0);
         Order order = Order.builder()
-                .customer("Pieter")
-                .name("Design Patterns")
-                .build();
-
-        orderService.saveNewOrder(order);
-
-        verify(ordersProvider).saveOrder(any());
-    }
-
-    @Test
-    void order_service_should_convert_price_to_cents() {
-        when(priceProvider.getPrice(any())).thenReturn(20.0);
-        Order order = Order.builder()
                 .customer("Michel")
-                .name("Design Patterns")
+                .name("espresso")
                 .build();
 
         orderService.saveNewOrder(order);
 
         verify(ordersProvider).saveOrder(orderArgumentCaptor.capture());
-        assertThat(orderArgumentCaptor.getValue().price()).isEqualTo(2000);
+        var orderToBePersisted = orderArgumentCaptor.getValue();
+
+        assertThat(orderToBePersisted.name()).isEqualTo("espresso");
+        assertThat(orderToBePersisted.customer()).isEqualTo("Michel");
+        assertThat(orderToBePersisted.price()).isNotNull();
+    }
+
+    //test price conversion as part of the order service, not separately
+    @Test
+    void order_service_should_convert_price_to_cents() {
+        when(priceProvider.getPrice(any())).thenReturn(2.0);
+        Order order = Order.builder()
+                .customer("Michel")
+                .name("espresso")
+                .build();
+
+        orderService.saveNewOrder(order);
+
+        verify(ordersProvider).saveOrder(orderArgumentCaptor.capture());
+        assertThat(orderArgumentCaptor.getValue().price()).isEqualTo(200);
     }
 
 }
