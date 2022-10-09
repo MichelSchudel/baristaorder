@@ -21,15 +21,16 @@ public class OrderService {
         //get the price from headquarters
         double price = priceProvider.getPrice(order.name());
 
-        //convert it to cents
+        //convert the price to cents
         long convertedPrice = priceConverter.convertToCents(price);
 
-
+        //enrich the order with the price
         var orderWithPrice = order
                 .toBuilder()
                 .price(convertedPrice)
                 .build();
 
+        //save the order to the repository
         return ordersProvider.saveOrder(orderWithPrice);
     }
 

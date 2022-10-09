@@ -6,7 +6,7 @@
   "response": {
     "status": 200,
     "jsonBody": {
-      "price": 20
+      "price": 2
     },
     "headers": {
       "Content-Type": "application/json"

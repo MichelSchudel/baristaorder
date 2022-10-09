@@ -22,8 +22,8 @@ class PriceRestClientWiremockIT {
     private PriceRestClient priceRestClient;
 
     @Test
-    void test() {
-        assertThat(priceRestClient.getPrice("espresso")).isEqualTo(20);
+    void should_retrieve_price_from_external_service() {
+        assertThat(priceRestClient.getPrice("espresso")).isEqualTo(2);
     }
 
     @TestConfiguration

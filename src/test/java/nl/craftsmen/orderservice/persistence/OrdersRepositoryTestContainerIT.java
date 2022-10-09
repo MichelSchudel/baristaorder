@@ -20,7 +20,9 @@ class OrdersRepositoryTestContainerIT {
     private OrdersRepository ordersCrudRepository;
 
     @Test
-    void insert_order() {
+    void repository_should_store_and_retrieve_order() {
+
+        //build an order to store
         var order = Order
                 .builder()
                 .name("espresso")
@@ -28,9 +30,11 @@ class OrdersRepositoryTestContainerIT {
                 .customer("Michel")
                 .build();
 
+        //save and retrieve order
         var persistedOrder = ordersCrudRepository.saveOrder(order);
         Order storedOrder = ordersCrudRepository.findOrderById(persistedOrder.id());
 
+        //assert some properties
         assertThat(storedOrder).isNotNull();
         assertThat(storedOrder.id()).isNotNull();
         assertThat(storedOrder.name()).isEqualTo("espresso");
