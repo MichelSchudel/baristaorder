@@ -28,10 +28,10 @@ class OrdersRepositoryEmbeddedDbIT {
         var persistedOrder = ordersCrudRepository.saveOrder(order);
         Order storedOrder = ordersCrudRepository.findOrderById(persistedOrder.id());
 
-        assertThat(persistedOrder).isNotNull();
-        assertThat(persistedOrder.id()).isNotNull();
-        assertThat(persistedOrder.name()).isEqualTo("espresso");
-        assertThat(persistedOrder.price()).isEqualTo(200);
-        assertThat(persistedOrder.customer()).isEqualTo("Michel");
+        assertThat(storedOrder).isNotNull();
+        assertThat(storedOrder.id()).isNotNull();
+        assertThat(storedOrder.name()).isEqualTo("espresso");
+        assertThat(storedOrder.price()).isEqualTo(200);
+        assertThat(storedOrder.customer()).isEqualTo("Michel");
     }
 }

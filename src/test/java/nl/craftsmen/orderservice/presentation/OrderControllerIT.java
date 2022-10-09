@@ -61,7 +61,10 @@ class OrderControllerIT {
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
                 .body("name", equalTo("espresso"))
-                .body("price", equalTo(200));
+                .body("price", equalTo(200))
+                .body("customer", equalTo("Michel"))
+                .body("id", equalTo(1));
+
     }
 
     @Test
@@ -90,7 +93,7 @@ class OrderControllerIT {
                         Order.builder()
                                 .id(1L)
                                 .name("espresso")
-                                .price(2000L)
+                                .price(200L)
                                 .customer("Michel")
                                 .build());
 
@@ -103,7 +106,7 @@ class OrderControllerIT {
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
                 .body("name", equalTo("espresso"))
-                .body("price", equalTo(2000));
+                .body("price", equalTo(200));
     }
 
 }

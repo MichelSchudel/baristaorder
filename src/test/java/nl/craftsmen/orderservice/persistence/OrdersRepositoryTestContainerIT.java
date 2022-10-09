@@ -21,7 +21,7 @@ class OrdersRepositoryTestContainerIT {
 
     @Test
     void insert_order() {
-        Order order = Order
+        var order = Order
                 .builder()
                 .name("espresso")
                 .price(200L)
