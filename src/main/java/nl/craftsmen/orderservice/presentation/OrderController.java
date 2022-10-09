@@ -11,13 +11,14 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class OrderController {
 
+    //maps request and response models to domain objects
     private final OrderModelMapper orderModelMapper = new OrderModelMapper();
 
     private final OrderService orderService;
 
     @PostMapping
     public OrderResponseModel saveOrder(@Valid @RequestBody OrderRequestModel orderRequestModel) {
-        //map to domain model
+        //map request model to domain model
         var order = orderModelMapper.toOrder(orderRequestModel);
 
         //save the order
