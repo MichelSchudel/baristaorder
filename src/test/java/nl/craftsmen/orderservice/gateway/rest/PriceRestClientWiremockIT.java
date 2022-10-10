@@ -1,6 +1,8 @@
 package nl.craftsmen.orderservice.gateway.rest;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
@@ -18,12 +20,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Import(PriceRestClientWiremockIT.WiremockConfiguration.class)
 class PriceRestClientWiremockIT {
 
+    private Logger logger = LoggerFactory.getLogger(PriceRestClientWiremockIT.class);
+
     @Autowired
     private PriceRestClient priceRestClient;
 
     @Test
     void should_retrieve_price_from_external_service() {
-        assertThat(priceRestClient.getPrice("espresso")).isEqualTo(2);
+        final double price = priceRestClient.getPrice("espresso");
+        logger.info("espresso price: " + price);
+        assertThat(price).isEqualTo(2);
     }
 
     @TestConfiguration

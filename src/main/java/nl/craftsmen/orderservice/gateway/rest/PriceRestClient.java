@@ -22,6 +22,6 @@ public class PriceRestClient implements PriceProvider {
                         PriceResponseModel.class,
                         name)
                 )
-                .getPrice();
+                .price();
     }
 }

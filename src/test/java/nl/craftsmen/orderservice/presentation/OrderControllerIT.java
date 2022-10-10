@@ -41,12 +41,12 @@ class OrderControllerIT {
                         .id(1L)
                         .name("espresso")
                         .price(200L)
-                        .customer("Michel")
+                        .customer("Stephan")
                         .build());
 
         //set up web request
         var orderRequestModel = OrderRequestModel.builder()
-                .customer("Michel")
+                .customer("Stephan")
                 .name("espresso")
                 .build();
 
@@ -64,7 +64,7 @@ class OrderControllerIT {
                 .contentType(JSON)
                 .body("name", equalTo("espresso"))
                 .body("price", equalTo(200))
-                .body("customer", equalTo("Michel"))
+                .body("customer", equalTo("Stephan"))
                 .body("id", equalTo(1));
 
     }
@@ -98,7 +98,7 @@ class OrderControllerIT {
                                 .id(1L)
                                 .name("espresso")
                                 .price(200L)
-                                .customer("Michel")
+                                .customer("Stephan")
                                 .build());
 
         //do a call to the web layer
@@ -113,7 +113,7 @@ class OrderControllerIT {
                 .contentType(JSON)
                 .body("name", equalTo("espresso"))
                 .body("price", equalTo(200))
-                .body("customer", equalTo("Michel"))
+                .body("customer", equalTo("Stephan"))
                 .body("id", equalTo(1));
     }
 
