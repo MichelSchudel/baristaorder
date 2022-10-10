@@ -10,7 +10,8 @@
 
     <logger name="org.springframework.test.context" level="ERROR" />
     <logger name="org.springframework.boot.test.autoconfigure.orm.jpa" level="ERROR"/>
-
+    <logger name="org.springframework.boot.test.autoconfigure.web.client" level="ERROR"/>
+    <logger name="org.springframework.boot.test.autoconfigure.web.servlet" level="ERROR"/>
     <root level="info">
         <appender-ref ref="STDOUT" />
     </root>

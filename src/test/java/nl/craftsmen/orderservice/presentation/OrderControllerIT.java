@@ -57,7 +57,7 @@ class OrderControllerIT {
                 .when()
                 .post("/orders")
                 .then()
-                .log().ifValidationFails()
+                .log().all()
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
                 .body("name", equalTo("espresso"))
@@ -79,7 +79,7 @@ class OrderControllerIT {
                 .when()
                 .post("/orders")
                 .then()
-                .log().ifValidationFails()
+                .log().all()
                 .statusCode(HttpStatus.BAD_REQUEST.value());
     }
 
@@ -102,7 +102,7 @@ class OrderControllerIT {
                 .when()
                 .get("/orders/1")
                 .then()
-                .log().ifValidationFails()
+                .log().all()
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
                 .body("name", equalTo("espresso"))
