@@ -1,8 +1,14 @@
 package nl.craftsmen.orderservice.presentation;
 
-import io.restassured.module.mockmvc.RestAssuredMockMvc;
+import static io.restassured.http.ContentType.JSON;
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
 import nl.craftsmen.orderservice.core.Order;
 import nl.craftsmen.orderservice.core.OrderService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.context.WebApplicationContext;
 
-import static io.restassured.http.ContentType.JSON;
-import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
-import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
 @WebMvcTest
 class OrderControllerIT {
@@ -34,15 +36,14 @@ class OrderControllerIT {
 
     @Test
     void posting_order_should_result_in_order_response() {
-        
+
         //set up mock order service
-        when(mockOrderService.saveNewOrder(any())).thenReturn(
-                Order.builder()
-                        .id(1L)
-                        .name("espresso")
-                        .price(200L)
-                        .customer("Stephan")
-                        .build());
+        when(mockOrderService.saveNewOrder(any())).thenReturn(Order.builder()
+                .id(1L)
+                .name("espresso")
+                .price(200L)
+                .customer("Stephan")
+                .build());
 
         //set up web request
         var orderRequestModel = OrderRequestModel.builder()
@@ -51,15 +52,17 @@ class OrderControllerIT {
                 .build();
 
         //do a call to the web layer
-        given()
-                .body(orderRequestModel)
+        given().body(orderRequestModel)
+                .log()
+                .all()
                 .contentType(JSON)
 
                 .when()
                 .post("/orders")
 
                 .then()
-                .log().all()
+                .log()
+                .all()
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
                 .body("name", equalTo("espresso"))
@@ -75,7 +78,8 @@ class OrderControllerIT {
         var orderRequestModel = OrderRequestModel.builder()
                 .build();
         //do a call to the web layer
-        given()
+        given().log()
+                .all()
                 .body(orderRequestModel)
                 .contentType(JSON)
 
@@ -83,32 +87,30 @@ class OrderControllerIT {
                 .post("/orders")
 
                 .then()
-                .log().all()
+                .log()
+                .all()
                 .statusCode(HttpStatus.BAD_REQUEST.value());
     }
-
-
 
     @Test
     void get_existing_order() {
         //set up mock order service
-        when(mockOrderService.getOrder(any()))
-                .thenReturn(
-                        Order.builder()
-                                .id(1L)
-                                .name("espresso")
-                                .price(200L)
-                                .customer("Stephan")
-                                .build());
+        when(mockOrderService.getOrder(any())).thenReturn(Order.builder()
+                .id(1L)
+                .name("espresso")
+                .price(200L)
+                .customer("Stephan")
+                .build());
 
         //do a call to the web layer
-        given()
-
+        given().log()
+                .all()
                 .when()
                 .get("/orders/1")
 
                 .then()
-                .log().all()
+                .log()
+                .all()
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
                 .body("name", equalTo("espresso"))
