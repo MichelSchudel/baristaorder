@@ -54,8 +54,10 @@ class OrderControllerIT {
         given()
                 .body(orderRequestModel)
                 .contentType(JSON)
+
                 .when()
                 .post("/orders")
+
                 .then()
                 .log().all()
                 .statusCode(HttpStatus.OK.value())
@@ -76,8 +78,10 @@ class OrderControllerIT {
         given()
                 .body(orderRequestModel)
                 .contentType(JSON)
+
                 .when()
                 .post("/orders")
+
                 .then()
                 .log().all()
                 .statusCode(HttpStatus.BAD_REQUEST.value());
@@ -99,14 +103,18 @@ class OrderControllerIT {
 
         //do a call to the web layer
         given()
+
                 .when()
                 .get("/orders/1")
+
                 .then()
                 .log().all()
                 .statusCode(HttpStatus.OK.value())
                 .contentType(JSON)
                 .body("name", equalTo("espresso"))
-                .body("price", equalTo(200));
+                .body("price", equalTo(200))
+                .body("customer", equalTo("Michel"))
+                .body("id", equalTo(1));
     }
 
 }

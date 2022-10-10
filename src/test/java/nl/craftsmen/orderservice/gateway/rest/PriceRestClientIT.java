@@ -21,6 +21,7 @@ class PriceRestClientIT {
 
     @Test
     void should_retrieve_price_from_external_service() {
+
         this.server.expect(requestTo("/price/espresso"))
                 .andRespond(withSuccess("{ \"price\": 2}", MediaType.APPLICATION_JSON));
 

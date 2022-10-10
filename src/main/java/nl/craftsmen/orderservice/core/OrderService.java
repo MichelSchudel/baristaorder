@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class OrderService {
 
-    //for getting the price from headquarters
-    private final PriceProvider priceProvider;
-
     //for storing and retrieving the orders
     private final OrdersProvider ordersProvider;
+
+    //for getting the price from headquarters
+    private final PriceProvider priceProvider;
 
     //converts doubles to long (cents)
     private final PriceConverter priceConverter = new PriceConverter();

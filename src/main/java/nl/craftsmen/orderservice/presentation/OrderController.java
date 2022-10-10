@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/orders")
 @RequiredArgsConstructor
 public class OrderController {
 
@@ -16,7 +15,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @PostMapping
+    @PostMapping("/orders")
     public OrderResponseModel saveOrder(@Valid @RequestBody OrderRequestModel orderRequestModel) {
         //map request model to domain model
         var order = orderModelMapper.toOrder(orderRequestModel);
@@ -28,7 +27,7 @@ public class OrderController {
         return orderModelMapper.toOrderResponseModel(persistedOrder);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/orders/{id}")
     public OrderResponseModel getOrder(@PathVariable("id") Long id) {
         //get the order
         var order = orderService.getOrder(id);

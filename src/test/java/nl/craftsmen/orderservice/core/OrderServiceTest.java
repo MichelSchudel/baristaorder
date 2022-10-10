@@ -39,6 +39,7 @@ class OrderServiceTest {
         orderService.saveNewOrder(order);
 
         verify(ordersProvider).saveOrder(orderArgumentCaptor.capture());
+
         var orderToBePersisted = orderArgumentCaptor.getValue();
 
         assertThat(orderToBePersisted.name()).isEqualTo("espresso");
